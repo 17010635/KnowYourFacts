@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Random rand = new Random();
-            int randomInt = rand.nextInt(3);
+            int randomInt = rand.nextInt(6);
             vPager.setCurrentItem(randomInt, true);
             Log.d("random: ", randomInt + "");
         }
