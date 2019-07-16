@@ -14,11 +14,19 @@
         android:background="#4CAF50"
         android:orientation="vertical">
 
-        <ImageView
+        <com.jsibbold.zoomage.ZoomageView
             android:id="@+id/iv"
             android:layout_width="400dp"
             android:layout_height="400dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            app:zoomage_restrictBounds="false"
+            app:zoomage_animateOnReset="true"
+            app:zoomage_autoResetMode="UNDER"
+            app:zoomage_autoCenter="true"
+            app:zoomage_zoomable="true"
+            app:zoomage_translatable="true"
+            app:zoomage_minScale="0.6"
+            app:zoomage_maxScale="8" />
 
         <Button
             android:id="@+id/btnChangeColour"

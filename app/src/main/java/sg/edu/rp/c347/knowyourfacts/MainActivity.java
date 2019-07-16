@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     MyFragmentPagerAdapter adapter;
     ViewPager vPager;
     Button btnReadLtr;
+    Integer currentPage;
+
 
     int reqCode = 12345;
 
@@ -99,5 +103,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor prefEdit = prefs.edit();
+        currentPage = vPager.getCurrentItem();
+        prefEdit.putInt("current", currentPage);
+        prefEdit.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        currentPage = prefs.getInt("current", -1);
+        vPager.setCurrentItem(currentPage);
+    }
     
 }
